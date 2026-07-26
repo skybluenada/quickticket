@@ -3,15 +3,16 @@ package com.quickticket.api.domain.reservation.entity;
 import com.quickticket.api.domain.event.entity.Event;
 import com.quickticket.api.domain.seat.entity.Seat;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reservation")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@AllArgsConstructor
 public class Reservation {
 
     @Id

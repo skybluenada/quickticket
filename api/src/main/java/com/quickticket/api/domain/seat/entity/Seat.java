@@ -7,10 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "seat")
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
