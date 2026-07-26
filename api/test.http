@@ -9,3 +9,13 @@ Content-Type: application/json
   "maxRow": 5,
   "maxCol": 10
 }
+
+### 유저 좌석 예매 API 테스트
+POST http://localhost:8080/api/reservations
+Content-Type: application/json
+Session-Key: my-test-session-1234
+
+{
+  "eventId": 1,
+  "seatId": 1
+}
