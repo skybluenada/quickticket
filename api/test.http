@@ -1,0 +1,11 @@
+### 이벤트 생성 API 테스트
+POST http://localhost:8080/admin/events
+Content-Type: application/json
+
+{
+  "name": "여름 페스티벌 티켓팅",
+  "openTime": "2026-08-01T20:00:00",
+  "couponQuota": 100,
+  "maxRow": 5,
+  "maxCol": 10
+}
