@@ -30,3 +30,15 @@ public class Event {
     private EventStatus status;
 
 }
+
+public void update(String name, LocalDateTime openTime, Integer couponQuota, EventStatus status) {
+    this.name = name;
+    this.openTime = openTime;
+    this.couponQuota = couponQuota;
+    this.status = status;
+}
+
+// 긴급 차단용 메서드
+public void emergencyStop() {
+    this.status = EventStatus.PAUSED;
+}
