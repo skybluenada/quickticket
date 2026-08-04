@@ -56,4 +56,64 @@ public class EventService {
 
         return savedEvent.getId();
     }
+    // 1-1. 이벤트 목록 조회
+    @Transactional(readOnly = true)
+    public List<EventResponse> getAllEvents() {
+        return eventRepository.findAll().stream()
+                .map(event -> EventResponse.builder()
+                        .id(event.getId())
+                        .name(event.getName())
+                        .openTime(event.getOpenTime())
+                        .couponQuota(event.getCouponQuota())
+                        .maxRow(event.getMaxRow())
+                        .maxCol(event.getMaxCol())
+                        .status(event.getStatus())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    // 1-2. 이벤트 단건 상세 조회
+    @Transactional(readOnly = true)
+    public EventResponse getEvent(Long eventId) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이벤트입니다."));
+
+        return EventResponse.builder()
+                .id(event.getId())
+                .name(event.getName())
+                .openTime(event.getOpenTime())
+                .couponQuota(event.getCouponQuota())
+                .maxRow(event.getMaxRow())
+                .maxCol(event.getMaxCol())
+                .status(event.getStatus())
+                .build();
+    }
+
+    // 1-3. 이벤트 정보 수정
+    @Transactional
+    public void updateEvent(Long eventId, EventUpdateRequest request) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이벤트입니다."));
+
+        event.update(request.getName(), request.getOpenTime(), request.getCouponQuota(), request.getStatus());
+    }
+
+    // 1-4. 이벤트 삭제 (좌석 먼저 삭제 후 이벤트 삭제)
+    @Transactional
+    public void deleteEvent(Long eventId) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이벤트입니다."));
+
+        seatRepository.deleteByEventId(eventId);
+        eventRepository.delete(event);
+    }
+
+    // 1-5. 긴급 차단(Emergency Stop) 스위치
+    @Transactional
+    public void emergencyStop(Long eventId) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이벤트입니다."));
+
+        event.emergencyStop();
+    }
 }
