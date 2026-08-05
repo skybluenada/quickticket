@@ -1,6 +1,8 @@
 package com.quickticket.api.domain.event.controller;
 
 import com.quickticket.api.domain.event.dto.EventCreateRequest;
+import com.quickticket.api.domain.event.dto.EventResponse;
+import com.quickticket.api.domain.event.dto.EventUpdateRequest;
 import com.quickticket.api.domain.event.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
