@@ -4,7 +4,7 @@ services:
     image: postgres:15-alpine
     container_name: quickticket-postgres
     ports:
-      - "3306:5432"
+      - "5432:5432"
     environment:
       POSTGRES_DB: quickticket
       POSTGRES_USER: kakaru

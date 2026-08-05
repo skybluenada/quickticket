@@ -1,18 +1,21 @@
 package com.quickticket.api.domain.event.service;
 
 import com.quickticket.api.domain.event.dto.EventCreateRequest;
+import com.quickticket.api.domain.event.dto.EventUpdateRequest;
 import com.quickticket.api.domain.event.entity.Event;
 import com.quickticket.api.domain.event.entity.EventStatus;
 import com.quickticket.api.domain.event.repository.EventRepository;
 import com.quickticket.api.domain.seat.entity.Seat;
 import com.quickticket.api.domain.seat.entity.SeatStatus;
 import com.quickticket.api.domain.seat.repository.SeatRepository;
+import com.quickticket.api.domain.event.dto.EventResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
